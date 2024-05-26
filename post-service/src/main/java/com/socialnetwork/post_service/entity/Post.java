@@ -1,4 +1,4 @@
-package com.socialnetwork.user_service.entity;
+package com.socialnetwork.post_service.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,33 +6,29 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user")
+@Table(name = "post")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false, unique = true)
-    private String email;
     @Column(nullable = false)
-    private String password;
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "last_name")
-    private String lastName;
-    private String phone;
-    @Column(name = "date_of_birth")
-    private String dateOfBirth;
+    private String caption;
+    @Column(nullable = false, name = "user_id")
+    private Integer userId;
+    @Column(name = "share_post_id")
+    private Integer sharePostId;
+
     @Column(name = "created_time", updatable = false)
     @org.hibernate.annotations.CreationTimestamp
     private LocalDateTime createdTime;
+
     @Column(name = "updated_time")
     @org.hibernate.annotations.UpdateTimestamp
     private LocalDateTime updatedTime;
