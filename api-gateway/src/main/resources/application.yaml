@@ -1,5 +1,8 @@
 spring:
   application:
-    name: post-service
+    name: api-gateway
   config:
     import: optional:configserver:http://localhost:8888
+
+
+
