@@ -24,7 +24,6 @@ public class Post {
     private Integer userId;
     @Column(name = "share_post_id")
     private Integer sharePostId;
-
     @Column(name = "created_time", updatable = false)
     @org.hibernate.annotations.CreationTimestamp
     private LocalDateTime createdTime;

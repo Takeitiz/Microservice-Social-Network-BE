@@ -1,6 +1,7 @@
 package com.socialnetwork.post_service.service;
 
 import com.socialnetwork.post_service.entity.Post;
+import com.socialnetwork.post_service.model.FullPostResponse;
 import com.socialnetwork.post_service.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,9 @@ public class PostService {
     public int update(Post post) {
         postRepository.save(post);
         return post.getId();
+    }
+
+    public List<Post> findAllPostByUser(Integer userId) {
+        return postRepository.findAllByUserId(userId);
     }
 }
