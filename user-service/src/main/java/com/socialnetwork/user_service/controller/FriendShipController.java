@@ -20,7 +20,7 @@ public class FriendShipController {
     private static final Logger logger = LoggerFactory.getLogger(FriendShipController.class);
 
     @GetMapping
-    public ResponseEntity<List<FriendShip>> getAllFriendShip() {
+    public ResponseEntity<List<FriendShip>> getAllFriendShips() {
         logger.info("Received request to list all friendships");
         return ResponseEntity.ok(friendShipService.getAllFriendShips());
     }
