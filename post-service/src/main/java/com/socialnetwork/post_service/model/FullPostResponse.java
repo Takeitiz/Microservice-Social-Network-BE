@@ -7,7 +7,7 @@ import java.util.List;
 
 public class FullPostResponse {
     private String caption;
-    private Integer userId;
+    private String userId;
     private Integer sharePostId;
     List<User> users;
 }

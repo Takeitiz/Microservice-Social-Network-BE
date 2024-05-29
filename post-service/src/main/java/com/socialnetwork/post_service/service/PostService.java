@@ -37,7 +37,7 @@ public class PostService {
         return post.getId();
     }
 
-    public List<Post> findAllPostByUser(Integer userId) {
+    public List<Post> findAllPostByUser(String userId) {
         return postRepository.findAllByUserId(userId);
     }
 }

@@ -1,7 +1,6 @@
 package com.socialnetwork.post_service.controller;
 
 import com.socialnetwork.post_service.entity.Post;
-import com.socialnetwork.post_service.model.FullPostResponse;
 import com.socialnetwork.post_service.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,10 +27,8 @@ public class PostController {
         return ResponseEntity.ok(postService.getAll());
     }
 
-    @GetMapping("/user/{user-id}")
-    public ResponseEntity<List<Post>> findAllUsers(
-            @PathVariable("user-id") Integer userId
-    ) {
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Post>> findAllUsers(@PathVariable("userId") String userId) {
         return ResponseEntity.ok(postService.findAllPostByUser(userId));
     }
 }

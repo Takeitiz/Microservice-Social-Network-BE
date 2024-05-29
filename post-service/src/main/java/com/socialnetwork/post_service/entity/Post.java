@@ -21,13 +21,12 @@ public class Post {
     @Column(nullable = false)
     private String caption;
     @Column(nullable = false, name = "user_id")
-    private Integer userId;
+    private String userId;
     @Column(name = "share_post_id")
     private Integer sharePostId;
     @Column(name = "created_time", updatable = false)
     @org.hibernate.annotations.CreationTimestamp
     private LocalDateTime createdTime;
-
     @Column(name = "updated_time")
     @org.hibernate.annotations.UpdateTimestamp
     private LocalDateTime updatedTime;

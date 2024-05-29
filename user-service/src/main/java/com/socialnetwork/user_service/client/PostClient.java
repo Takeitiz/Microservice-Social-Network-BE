@@ -9,6 +9,6 @@ import java.util.List;
 
 @FeignClient(name = "post-service", url = "${application.config.post-service-url}")
 public interface PostClient {
-    @GetMapping("/user/{user-id}")
-    List<Post> findAllPostByUser(@PathVariable("user-id") Integer userId);
+    @GetMapping("/user/{userId}")
+    List<Post> findAllPostByUser(@PathVariable("userId") String userId);
 }
