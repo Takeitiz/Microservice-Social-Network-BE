@@ -13,20 +13,16 @@ import java.util.List;
 @RequestMapping("api/post")
 @RequiredArgsConstructor
 public class PostController {
-
     private final PostService postService;
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody Post post) {
         postService.create(post);
     }
-
     @GetMapping
     public ResponseEntity<List<Post>> findAllUsers() {
         return ResponseEntity.ok(postService.getAll());
     }
-
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Post>> findAllUsers(@PathVariable("userId") String userId) {
         return ResponseEntity.ok(postService.findAllPostByUser(userId));
