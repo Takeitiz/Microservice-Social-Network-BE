@@ -47,4 +47,11 @@ public class ContentController {
         contentService.deleteContent(contentId);
         return ResponseEntity.accepted().build();
     }
+
+    @GetMapping("/post/{postId}")
+    public List<Content> getAllContentsByPost(
+            @PathVariable("postId") Integer postId
+    ) {
+        return contentService.getAllContentsByPost(postId);
+    }
 }

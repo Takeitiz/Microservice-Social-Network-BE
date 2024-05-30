@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,10 +50,12 @@ public class PostController {
         return ResponseEntity.accepted().build();
     }
 
+    @GetMapping("/user/{userId}")
+    public List<Post> getPostsByUserId(
+            @PathVariable("userId") String userId
+    ) {
+        return postService.getPostsByUserId(userId);
+    }
 
-    // Legacy for inter communicate between service
-//    @GetMapping("/user/{userId}")
-//    public ResponseEntity<List<Post>> findAllUsers(@PathVariable("userId") String userId) {
-//        return ResponseEntity.ok(postService.findAllPostByUser(userId));
-//    }
 }
+

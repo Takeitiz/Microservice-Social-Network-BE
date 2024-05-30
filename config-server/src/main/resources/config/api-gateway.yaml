@@ -29,6 +29,18 @@ spring:
             uri: lb://post-service
             predicates:
               - Path=/api/content/**
+          - id: post-react-service
+            uri: lb://post-service
+            predicates:
+              - Path=/api/react/**
+          - id: comment-service
+            uri: lb://comment-service
+            predicates:
+              - Path=/api/comment/**
+          - id: feed-service
+            uri: lb://feed-service
+            predicates:
+              - Path=/api/feed/**
 
 
 management:

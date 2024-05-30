@@ -1,5 +1,6 @@
 package com.socialnetwork.post_service.service;
 
+import com.socialnetwork.post_service.entity.Content;
 import com.socialnetwork.post_service.entity.React;
 import com.socialnetwork.post_service.repository.ReactRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -52,5 +53,9 @@ public class ReactService {
     public void deleteReact(Integer reactId) {
         logger.info("Deleting react with id {}", reactId);
         reactRepository.deleteById(reactId);
+    }
+
+    public List<React> getAllReactsByPost(Integer postId) {
+        return reactRepository.findByPostId(postId);
     }
 }

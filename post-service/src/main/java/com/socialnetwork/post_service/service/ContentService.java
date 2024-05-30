@@ -1,6 +1,7 @@
 package com.socialnetwork.post_service.service;
 
 import com.socialnetwork.post_service.entity.Content;
+import com.socialnetwork.post_service.entity.Post;
 import com.socialnetwork.post_service.repository.ContentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -55,5 +56,9 @@ public class ContentService {
     public void deleteContent(Integer contentId) {
         logger.info("Deleting content with id {}", contentId);
         contentRepository.deleteById(contentId);
+    }
+
+    public List<Content> getAllContentsByPost(Integer postId) {
+        return contentRepository.findByPostId(postId);
     }
 }

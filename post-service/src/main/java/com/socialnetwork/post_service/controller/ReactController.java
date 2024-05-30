@@ -1,5 +1,6 @@
 package com.socialnetwork.post_service.controller;
 
+import com.socialnetwork.post_service.entity.Content;
 import com.socialnetwork.post_service.entity.React;
 import com.socialnetwork.post_service.service.ReactService;
 import jakarta.validation.Valid;
@@ -46,5 +47,11 @@ public class ReactController {
         logger.info("Received request to delete react with id: {}", reactId);
         reactService.deleteReact(reactId);
         return ResponseEntity.accepted().build();
+    }
+    @GetMapping("/post/{postId}")
+    public List<React> getAllReactsByPost(
+            @PathVariable("postId") Integer postId
+    ) {
+        return reactService.getAllReactsByPost(postId);
     }
 }
