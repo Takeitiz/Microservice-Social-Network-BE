@@ -1,4 +1,4 @@
-package com.socialnetwork.user_service.entity;
+package com.socialnetwork.post_service.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,26 +9,28 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "friendship")
+@Table(name = "content")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FriendShip {
-    public enum FriendStatus {
-        REQUEST,
-        FRIEND,
-        BLOCK
+public class Content {
+    public enum ContentType {
+        Text,
+        Image,
+        Video,
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false, name="user_id")
-    private String userId;
-    @Column(nullable = false, name="friend_id")
-    private String friendId;
+    @Column(name = "text_content")
+    private String textContent;
+    @Column(name = "link_content")
+    private String linkContent;
     @Enumerated(EnumType.STRING)
-    private FriendStatus status;
+    private ContentType type;
+    @Column(nullable = false, name = "post_id")
+    private Integer postId;
     @Column(name = "created_time", updatable = false)
     @org.hibernate.annotations.CreationTimestamp
     private LocalDateTime createdTime;
