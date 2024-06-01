@@ -52,4 +52,5 @@ public class FriendShipController {
         friendShipService.deleteFriendShip(friendShipId);
         return ResponseEntity.accepted().build();
     }
+
 }

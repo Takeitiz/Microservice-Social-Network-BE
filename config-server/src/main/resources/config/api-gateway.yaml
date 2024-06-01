@@ -21,6 +21,14 @@ spring:
             uri: lb://user-service
             predicates:
               - Path=/api/friendship/**
+          - id: user-relation-service
+            uri: lb://user-service
+            predicates:
+              - Path=/api/relation/**
+          - id: user-search-service
+            uri: lb://user-service
+            predicates:
+              - Path=/api/search/**
           - id: post-service
             uri: lb://post-service
             predicates:

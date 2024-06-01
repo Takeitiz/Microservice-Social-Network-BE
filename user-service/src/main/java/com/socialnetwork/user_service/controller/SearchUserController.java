@@ -28,6 +28,5 @@ public class SearchUserController {
     @PostMapping("/users")
     public ResponseEntity<List<UserDTO>> searchUser(@RequestBody SearchUserRequest request) {
         return ResponseEntity.ok(searchUserService.searchUsers(request));
-
     }
 }
