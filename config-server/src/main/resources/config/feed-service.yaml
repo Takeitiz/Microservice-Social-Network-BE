@@ -21,4 +21,5 @@ application:
   config:
     user-service-url: http://localhost:8060/api
     post-service-url: http://localhost:8060/api
+    comment-service-url: http://localhost:8060/api
 

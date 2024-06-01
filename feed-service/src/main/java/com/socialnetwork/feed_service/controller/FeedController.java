@@ -1,16 +1,15 @@
 package com.socialnetwork.feed_service.controller;
 
+import com.socialnetwork.feed_service.model.Comment;
 import com.socialnetwork.feed_service.model.FullPostContent;
 import com.socialnetwork.feed_service.model.GetAllPostsByUserIdRequest;
+import com.socialnetwork.feed_service.model.React;
 import com.socialnetwork.feed_service.service.FeedService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +23,15 @@ public class FeedController {
     @PostMapping("/user-feeds")
     public ResponseEntity<List<FullPostContent>> getUserFeeds(@RequestBody GetAllPostsByUserIdRequest request) {
         return ResponseEntity.ok(feedService.getAllPostsByUserId(request));
+    }
+
+    @GetMapping("/post/{postId}/react")
+    public ResponseEntity<List<React>> getReactsByPostId(@PathVariable("postId") Integer postId) {
+        return ResponseEntity.ok(feedService.getAllReactsByPostId(postId));
+    }
+
+    @GetMapping("/post/{postId}/comment")
+    public ResponseEntity<List<Comment>> getCommentsByPostId(@PathVariable("postId") Integer postId) {
+        return ResponseEntity.ok(feedService.getAllCommentsByPostId(postId));
     }
 }

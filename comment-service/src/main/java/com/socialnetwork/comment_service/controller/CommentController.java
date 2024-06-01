@@ -48,4 +48,10 @@ public class CommentController {
         commentService.deleteComment(commentId);
         return ResponseEntity.accepted().build();
     }
+    @GetMapping("/post/{postId}")
+    public List<Comment> getAllContentsByPost(
+            @PathVariable("postId") Integer postId
+    ) {
+        return commentService.getAllCommentsByPost(postId);
+    }
 }

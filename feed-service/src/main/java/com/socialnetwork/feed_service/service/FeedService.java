@@ -1,5 +1,6 @@
 package com.socialnetwork.feed_service.service;
 
+import com.socialnetwork.feed_service.client.CommentServiceClient;
 import com.socialnetwork.feed_service.client.PostServiceClient;
 import com.socialnetwork.feed_service.client.UserServiceClient;
 import com.socialnetwork.feed_service.model.*;
@@ -16,6 +17,7 @@ import java.util.List;
 public class FeedService {
     private final UserServiceClient userServiceClient;
     private final PostServiceClient postServiceClient;
+    private final CommentServiceClient commentServiceClient;
     public List<FullPostContent> getAllPostsByUserId(GetAllPostsByUserIdRequest request) {
 
         List<FullPostContent> listPosts = new ArrayList<>();
@@ -82,5 +84,13 @@ public class FeedService {
 
 
         return listPosts;
+    }
+
+    public List<React> getAllReactsByPostId(Integer postId) {
+        return postServiceClient.getAllReactsByPost(postId);
+    }
+
+    public List<Comment> getAllCommentsByPostId(Integer postId) {
+        return commentServiceClient.getAllCommentsByPost(postId);
     }
 }

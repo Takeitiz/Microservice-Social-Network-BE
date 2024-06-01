@@ -40,6 +40,7 @@ public class UserMapper {
                 .password(userRepresentation.getFederationLink())
                 .firstName(userRepresentation.getFirstName())
                 .lastName(userRepresentation.getLastName())
+                .fullName(userRepresentation.getLastName() + " " +userRepresentation.getFirstName())
                 .phone(phone)
                 .dateOfBirth(dateOfBirth)
                 .build();

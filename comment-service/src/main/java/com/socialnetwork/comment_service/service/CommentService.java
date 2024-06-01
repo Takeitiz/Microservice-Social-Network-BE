@@ -54,4 +54,8 @@ public class CommentService {
         logger.info("Deleting comment with id {}", commentId);
         commentRepository.deleteById(commentId);
     }
+
+    public List<Comment> getAllCommentsByPost(Integer postId) {
+        return commentRepository.findByPostIdOrderByCreatedTimeDesc(postId);
+    }
 }

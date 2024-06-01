@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "comment")
 @Data
@@ -22,4 +24,10 @@ public class Comment {
     private String userId;
     @Column(nullable = false, name = "post_id")
     private Integer postId;
+    @Column(name = "created_time", updatable = false)
+    @org.hibernate.annotations.CreationTimestamp
+    private LocalDateTime createdTime;
+    @Column(name = "updated_time")
+    @org.hibernate.annotations.UpdateTimestamp
+    private LocalDateTime updatedTime;
 }
