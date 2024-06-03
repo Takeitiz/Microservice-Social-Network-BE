@@ -49,6 +49,10 @@ spring:
             uri: lb://feed-service
             predicates:
               - Path=/api/feed/**
+          - id: feed-additional-service
+            uri: lb://feed-service
+            predicates:
+              - Path=/api/additional/**
 
 
 management:

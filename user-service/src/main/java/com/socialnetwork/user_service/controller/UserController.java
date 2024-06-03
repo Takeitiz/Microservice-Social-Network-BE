@@ -34,13 +34,13 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserDTO> findUserById(@PathVariable String userId) {
+    public UserDTO findUserById(@PathVariable("userId") String userId) {
         UserResource userResource = keycloak.realm("social-network").users().get(userId);
         UserRepresentation user = userResource.toRepresentation();
         if (user == null) {
-            return ResponseEntity.notFound().build();
+            return null;
         }
-        return ResponseEntity.ok(toUserDTO(user));
+        return toUserDTO(user);
     }
 
     @GetMapping("/with-post/{userId}")

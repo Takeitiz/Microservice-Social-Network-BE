@@ -1,4 +1,4 @@
-package com.socialnetwork.post_service.model;
+package com.socialnetwork.feed_service.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +11,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PostDTO {
+public class User {
+    private String id;
     private String email;
     private String password;
     private String firstName;
     private String lastName;
+    private String fullName;
     private String phone;
     private LocalDate dateOfBirth;
 }

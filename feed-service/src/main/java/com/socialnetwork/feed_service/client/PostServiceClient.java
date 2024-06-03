@@ -5,6 +5,7 @@ import com.socialnetwork.feed_service.model.Post;
 import com.socialnetwork.feed_service.model.React;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,8 @@ public interface PostServiceClient {
     public List<Post> getPostsByUserId(
             @PathVariable("userId") String userId
     );
+    @GetMapping("/post/{id}")
+    public Post getPostById(@PathVariable("id") Integer postId);
     @GetMapping("/content/post/{postId}")
     public List<Content> getAllContentsByPost(
             @PathVariable("postId") Integer postId

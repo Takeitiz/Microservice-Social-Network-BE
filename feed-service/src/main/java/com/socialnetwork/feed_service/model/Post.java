@@ -19,5 +19,4 @@ public class Post {
     private Integer sharePostId;
     private LocalDateTime createdTime;
     private LocalDateTime updatedTime;
-
 }

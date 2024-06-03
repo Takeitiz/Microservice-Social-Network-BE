@@ -1,27 +1,25 @@
-package com.socialnetwork.feed_service.model;
+package com.socialnetwork.post_service.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FullPostContent {
+public class Comment {
     private Integer id;
-    private String caption;
+    private String comment;
     private String userId;
-    private Integer sharePostId;
-    private User user;
-    private FullPostContent sharePost;
-    private List<Comment> comments;
-    private List<React> reacts;
-    private List<Content> contents;
+    private Integer postId;
     private LocalDateTime createdTime;
     private LocalDateTime updatedTime;
 }

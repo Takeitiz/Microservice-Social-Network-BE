@@ -1,9 +1,11 @@
 package com.socialnetwork.post_service.controller;
 
 import com.socialnetwork.post_service.entity.Post;
+import com.socialnetwork.post_service.model.Comment;
 import com.socialnetwork.post_service.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.Comments;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -25,9 +27,9 @@ public class PostController {
         return ResponseEntity.ok(postService.getAllPosts());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable("id") Integer postId) {
+    public Post getPostById(@PathVariable("id") Integer postId) {
         logger.info("Received request to fetch post with id: {}", postId);
-        return ResponseEntity.ok(postService.getPostById(postId));
+        return postService.getPostById(postId);
     }
     @PostMapping
     public ResponseEntity<Post> createPost(@Valid @RequestBody Post request) {
@@ -56,6 +58,14 @@ public class PostController {
     ) {
         return postService.getPostsByUserId(userId);
     }
+
+//    @GetMapping("/{postId}/comment")
+//    public ResponseEntity<List<Comment>> getTotalComments(
+//            @PathVariable("postId") Integer postId
+//    ) {
+//
+//    }
+
 
 }
 
