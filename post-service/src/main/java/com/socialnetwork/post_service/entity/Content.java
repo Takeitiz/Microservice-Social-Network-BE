@@ -27,6 +27,7 @@ public class Content {
     private String textContent;
     @Column(name = "link_content")
     private String linkContent;
+    private String image_id;
     @Enumerated(EnumType.STRING)
     private ContentType type;
     @Column(nullable = false, name = "post_id")

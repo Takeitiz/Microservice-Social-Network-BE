@@ -17,6 +17,7 @@ public class Content {
     }
     private String textContent;
     private String linkContent;
+    private String image_id;
     private ContentType type;
     private Integer postId;
 }

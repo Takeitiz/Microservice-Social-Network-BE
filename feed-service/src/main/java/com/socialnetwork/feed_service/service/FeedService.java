@@ -38,6 +38,7 @@ public class FeedService {
                             List<React> reacts = postServiceClient.getAllReactsByPost(post.getId());
 
                             FullPostContent newPost = FullPostContent.builder()
+                                    .id(post.getId())
                                     .caption(post.getCaption())
                                     .userId(post.getUserId())
                                     .sharePostId(post.getSharePostId())
@@ -62,6 +63,7 @@ public class FeedService {
             List<React> reacts = postServiceClient.getAllReactsByPost(post.getId());
 
             FullPostContent newPost = FullPostContent.builder()
+                    .id(post.getId())
                     .caption(post.getCaption())
                     .userId(post.getUserId())
                     .sharePostId(post.getSharePostId())
@@ -90,7 +92,25 @@ public class FeedService {
         return postServiceClient.getAllReactsByPost(postId);
     }
 
-    public List<Comment> getAllCommentsByPostId(Integer postId) {
-        return commentServiceClient.getAllCommentsByPost(postId);
+    public List<FullCommentContent> getAllCommentsByPostId(Integer postId) {
+        List<FullCommentContent> fullCommentContents = new ArrayList<>();
+        var comments = commentServiceClient.getAllCommentsByPost(postId);
+
+        for (var comment : comments) {
+            var user = userServiceClient.findUserById(comment.getUserId());
+            FullCommentContent cmt = FullCommentContent.builder()
+                    .id(comment.getId())
+                    .comment(comment.getComment())
+                    .userId(comment.getUserId())
+                    .postId(comment.getPostId())
+                    .createdTime(comment.getCreatedTime())
+                    .updatedTime(comment.getUpdatedTime())
+                    .user(user)
+                    .build();
+
+            fullCommentContents.add(cmt);
+        }
+
+        return fullCommentContents;
     }
 }

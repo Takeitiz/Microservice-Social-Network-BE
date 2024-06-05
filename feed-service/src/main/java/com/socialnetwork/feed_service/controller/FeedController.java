@@ -1,9 +1,6 @@
 package com.socialnetwork.feed_service.controller;
 
-import com.socialnetwork.feed_service.model.Comment;
-import com.socialnetwork.feed_service.model.FullPostContent;
-import com.socialnetwork.feed_service.model.GetAllPostsByUserIdRequest;
-import com.socialnetwork.feed_service.model.React;
+import com.socialnetwork.feed_service.model.*;
 import com.socialnetwork.feed_service.service.FeedService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -31,7 +28,7 @@ public class FeedController {
     }
 
     @GetMapping("/post/{postId}/comment")
-    public ResponseEntity<List<Comment>> getCommentsByPostId(@PathVariable("postId") Integer postId) {
+    public ResponseEntity<List<FullCommentContent>> getCommentsByPostId(@PathVariable("postId") Integer postId) {
         return ResponseEntity.ok(feedService.getAllCommentsByPostId(postId));
     }
 }

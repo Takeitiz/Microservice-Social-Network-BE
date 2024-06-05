@@ -1,0 +1,18 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8094
+
+spring:
+  application:
+    name: media-service
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

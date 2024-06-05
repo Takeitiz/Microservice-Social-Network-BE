@@ -1,10 +1,7 @@
 package com.socialnetwork.feed_service.controller;
 
 import com.socialnetwork.feed_service.model.FullPostContent;
-import com.socialnetwork.feed_service.model.Post;
-import com.socialnetwork.feed_service.model.React;
 import com.socialnetwork.feed_service.service.AdditionalInformationService;
-import com.socialnetwork.feed_service.service.FeedService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

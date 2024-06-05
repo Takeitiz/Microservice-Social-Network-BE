@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
@@ -12,11 +11,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Comment {
-    private Integer id;
-    private String comment;
-    private String userId;
-    private Integer postId;
+public class FullCommentContent {
+    public Integer id;
+    public String comment;
+    public String userId;
+    public Integer postId;
+    public User user;
+    public Post post;
     private LocalDateTime createdTime;
     private LocalDateTime updatedTime;
 }
