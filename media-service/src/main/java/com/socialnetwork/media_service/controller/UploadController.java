@@ -20,15 +20,40 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UploadController {
     private final CloudinaryService cloudinaryService;
-    @PostMapping()
-    public ResponseEntity<String> upload(@RequestParam MultipartFile multipartFile) throws IOException {
+
+    @PostMapping("/post")
+    public ResponseEntity<String> uploadPostImage(@RequestParam MultipartFile multipartFile, @RequestParam(required = false) String imageName) throws IOException {
         BufferedImage bi = ImageIO.read(multipartFile.getInputStream());
         if (bi == null) {
-            return new ResponseEntity<>("Image non valide!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Image not valid!", HttpStatus.BAD_REQUEST);
         }
-        Map result = cloudinaryService.upload(multipartFile);
-        return new ResponseEntity<>("https://res.cloudinary.com/dwuvvf1tm/image/upload/v1717578107/"+ (String) result.get("public_id") + ".png", HttpStatus.OK);
+        String publicId = imageName != null ? imageName : multipartFile.getOriginalFilename();
+        Map<String, Object> result = cloudinaryService.upload(multipartFile, "post", publicId);
+        String imageUrl = (String) result.get("url");
+        return new ResponseEntity<>(imageUrl, HttpStatus.OK);
     }
+
+    @PostMapping("/user")
+    public ResponseEntity<String> uploadAvatar(@RequestParam MultipartFile multipartFile, @RequestParam(required = false) String imageName) throws IOException {
+        BufferedImage bi = ImageIO.read(multipartFile.getInputStream());
+        if (bi == null) {
+            return new ResponseEntity<>("Image not valid!", HttpStatus.BAD_REQUEST);
+        }
+        String publicId = imageName != null ? imageName : multipartFile.getOriginalFilename();
+        Map<String, Object> result = cloudinaryService.upload(multipartFile, "user", publicId);
+        String imageUrl = (String) result.get("url");
+        return new ResponseEntity<>(imageUrl, HttpStatus.OK);
+    }
+
+    @GetMapping("/image")
+    public ResponseEntity<String> fetchImage(@RequestParam String publicId) {
+        String imageUrl = cloudinaryService.fetchImageUrl(publicId);
+        if (imageUrl.equals("Image not found or error retrieving the image")) {
+            return new ResponseEntity<>(imageUrl, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(imageUrl, HttpStatus.OK);
+    }
+}
 
 //    @DeleteMapping("/{id}")
 //    public ResponseEntity<String> delete(@PathVariable("id") Integer id) {
@@ -45,5 +70,3 @@ public class UploadController {
 //        contentService.deleteContent(id);
 //        return new ResponseEntity<>("Delete content success", HttpStatus.OK);
 //    }
-
-}

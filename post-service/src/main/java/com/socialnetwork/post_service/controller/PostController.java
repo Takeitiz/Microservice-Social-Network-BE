@@ -32,10 +32,9 @@ public class PostController {
         return postService.getPostById(postId);
     }
     @PostMapping
-    public ResponseEntity<Post> createPost(@Valid @RequestBody Post request) {
+    public ResponseEntity<Integer> createPost(@Valid @RequestBody Post request) {
         logger.info("Received request to create a new post");
-        Post createdPost = postService.createPost(request);
-        return new ResponseEntity<>(createdPost, HttpStatus.CREATED);
+        return new ResponseEntity<>(postService.createPost(request), HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
     public ResponseEntity<Post> updatePost(

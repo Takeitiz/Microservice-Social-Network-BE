@@ -31,14 +31,15 @@ public class PostService {
     }
 
     @Transactional
-    public Post createPost(Post request) {
+    public Integer createPost(Post request) {
         logger.info("Creating new post by userId {}", request.getUserId());
         var newPost = Post.builder()
                 .caption(request.getCaption())
                 .userId(request.getUserId())
                 .sharePostId(request.getSharePostId())
                 .build();
-        return postRepository.save(newPost);
+        postRepository.save(newPost);
+        return newPost.getId();
     }
     @Transactional
     public Post updatePost(Integer postId, Post request) throws EntityNotFoundException {

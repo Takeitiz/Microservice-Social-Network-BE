@@ -1,8 +1,10 @@
 package com.socialnetwork.feed_service.client;
 
+import com.socialnetwork.feed_service.exception.CustomException;
 import com.socialnetwork.feed_service.model.Content;
 import com.socialnetwork.feed_service.model.Post;
 import com.socialnetwork.feed_service.model.React;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @FeignClient(name = "post-service", url = "${application.config.post-service-url}")
+@CircuitBreaker(name = "external", fallbackMethod = "fallback")
 public interface PostServiceClient {
     @GetMapping("/post/user/{userId}")
     public List<Post> getPostsByUserId(
@@ -28,4 +31,7 @@ public interface PostServiceClient {
     public List<React> getAllReactsByPost(
             @PathVariable("postId") Integer postId
     );
+    default void fallback(Exception e) {
+        throw new CustomException("Payment service is not available", "UNAVAILABLE", 500);
+    }
 }
