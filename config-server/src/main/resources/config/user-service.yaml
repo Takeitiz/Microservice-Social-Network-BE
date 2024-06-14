@@ -13,7 +13,7 @@ spring:
     name: user-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/user-service?useSSL=false
+    url: jdbc:mysql://localhost:3306/user-service?allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: password
   jpa:
