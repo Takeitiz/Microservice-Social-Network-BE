@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: chat-service
+  config:
+    import: optional:configserver:http://localhost:8888
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8100
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+io:
+  getstream:
+    chat:
+      apiKey: "42zja5qw98p3"
+      secretKey: "kum3udpuztr63zgexhd7muz532bj54cv7q2rp4uyh9k7rph6fv399zgnh4w3yagt"
+
