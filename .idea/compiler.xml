@@ -17,6 +17,7 @@
         <module name="chat-service" />
         <module name="user-service" />
         <module name="service-registry" />
+        <module name="notification-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -27,6 +28,7 @@
       <module name="config-server" target="17" />
       <module name="feed-service" target="17" />
       <module name="media-service" target="17" />
+      <module name="notification-service" target="17" />
       <module name="post-service" target="17" />
       <module name="service-registry" target="17" />
       <module name="user-service" target="17" />
@@ -41,6 +43,7 @@
       <module name="config-server" options="-parameters" />
       <module name="feed-service" options="-parameters" />
       <module name="media-service" options="-parameters" />
+      <module name="notification-service" options="-parameters" />
       <module name="post-service" options="-parameters" />
       <module name="service-registry" options="-parameters" />
       <module name="user-service" options="-parameters" />
